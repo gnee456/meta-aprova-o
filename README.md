@@ -1,1 +1,1 @@
-# meta-aprova-o
+git add .git commit -m "site basico + verificacao meta"git push -u origin main# meta-aprova-o
