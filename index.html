@@ -682,6 +682,10 @@
         statusMessage.style.color = '#d8374f';
         return;
       }
+      if (type === 'warning') {
+        statusMessage.style.color = '#b07116';
+        return;
+      }
       if (type === 'idle') {
         statusMessage.style.color = '#4b6077';
         return;
@@ -721,11 +725,12 @@
       try {
         const result = await submitLead(payload);
         if (result.mode === 'fallback') {
-          setStatus('success', 'Cadastro confirmado! Recebemos seus dados e vamos sincronizar seu acesso antecipado.');
+          setStatus('warning', 'Nao conseguimos salvar no servidor agora. Seus dados ficaram salvos localmente neste navegador.');
+          console.error('Falha ao enviar para Supabase:', result.error);
         } else {
           setStatus('success', 'Cadastro confirmado! Voce esta na lista de acesso antecipado.');
+          form.reset();
         }
-        form.reset();
       } catch (error) {
         console.error(error);
         setStatus('error', 'Nao foi possivel salvar agora. Tente novamente em instantes.');
@@ -757,7 +762,8 @@
         });
 
         if (!response.ok) {
-          throw new Error(`Supabase request failed with status ${response.status}`);
+          const errorText = await response.text();
+          throw new Error(`Supabase request failed with status ${response.status}: ${errorText}`);
         }
 
         return { mode: 'remote' };
