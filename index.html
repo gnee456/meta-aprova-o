@@ -1,11 +1,771 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <title>Analítico Radar</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analitico Radar | Lista de acesso antecipado</title>
+  <meta name="description" content="Entre na lista de acesso antecipado do Analitico Radar e transforme sinais de mercado em decisoes comerciais mais rapidas, seguras e lucrativas." />
+  <meta property="og:title" content="Analitico Radar | Lista de acesso antecipado" />
+  <meta property="og:description" content="Radar de oportunidades, score inteligente, filtros avancados e alertas para sellers e times de e-commerce decidirem com mais confianca." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://analitico.site/" />
+  <meta property="og:image" content="https://analitico.site/og-image.png" />
+  <link rel="icon" href="/token.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f9ff;
+      --card: rgba(255, 255, 255, 0.78);
+      --card-strong: #ffffff;
+      --accent: #08b8c7;
+      --accent-strong: #0a74ff;
+      --accent-warm: #ff7a18;
+      --text: #10253b;
+      --muted: #4b6077;
+      --border: rgba(16, 37, 59, 0.14);
+      --shadow: 0 22px 44px rgba(11, 41, 74, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Sora', 'Segoe UI', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(8, 184, 199, 0.22), transparent 35%),
+        radial-gradient(circle at 86% 6%, rgba(10, 116, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 70% 82%, rgba(255, 122, 24, 0.14), transparent 35%),
+        linear-gradient(135deg, #f7fcff, #edf5ff 50%, #f7fbff);
+      animation: fadeIn 520ms ease;
+    }
+
+    .site-header {
+      padding: 1.1rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(16, 37, 59, 0.08);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      background: rgba(247, 252, 255, 0.7);
+      z-index: 10;
+    }
+
+    .brand {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 1.05rem;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .btn-link {
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--accent-strong);
+      border: 1px solid rgba(10, 116, 255, 0.22);
+      border-radius: 999px;
+      padding: 0.52rem 1.1rem;
+      text-transform: uppercase;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(10, 116, 255, 0.2);
+    }
+
+    .btn-link:focus-visible,
+    .btn-primary:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--accent-strong);
+      outline-offset: 2px;
+    }
+
+    main {
+      padding: 0 5vw 4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 0.9fr);
+      gap: clamp(1.4rem, 3vw, 2.4rem);
+      align-items: start;
+      padding: 2.2rem 0 1rem;
+    }
+
+    .headline {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2.05rem, 4vw, 3.5rem);
+      line-height: 1.08;
+      margin: 0;
+      animation: riseIn 680ms ease both;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: 1.02rem;
+      max-width: 58ch;
+    }
+
+    .pill-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(10, 116, 255, 0.18);
+      border-radius: 999px;
+      color: #294664;
+      padding: 0.42rem 0.84rem;
+      font-size: 0.77rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .proof-band {
+      margin-top: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(110px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .proof-item {
+      background: var(--card-strong);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 0.75rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(15, 34, 55, 0.08);
+    }
+
+    .proof-item strong {
+      display: block;
+      font-size: 1.2rem;
+      font-family: 'Chakra Petch', sans-serif;
+      color: var(--accent-strong);
+      margin-bottom: 0.18rem;
+    }
+
+    .cred {
+      margin-top: 1rem;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1rem 1.15rem;
+      box-shadow: 0 14px 30px rgba(15, 34, 55, 0.07);
+      color: #28435f;
+      line-height: 1.45;
+    }
+
+    .form-card {
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.94), rgba(236, 245, 255, 0.84));
+      border: 1px solid rgba(10, 116, 255, 0.2);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      padding: 1.7rem;
+      position: relative;
+      overflow: hidden;
+      animation: riseIn 760ms ease both;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: -44px;
+      right: -32px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(8, 184, 199, 0.24), transparent 70%);
+    }
+
+    .form-card h2 {
+      margin: 0;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-note {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      margin: 0.45rem 0 1rem;
+      font-size: 0.92rem;
+    }
+
+    form {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    input[type='text'],
+    input[type='email'] {
+      width: 100%;
+      border: 1px solid rgba(16, 37, 59, 0.2);
+      border-radius: 0.74rem;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--text);
+      padding: 0.86rem 1rem;
+      font-size: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 4px rgba(8, 184, 199, 0.15);
+      border-color: var(--accent);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin-top: 0.1rem;
+    }
+
+    .checkbox-row input {
+      width: 1.1rem;
+      height: 1.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .lgpd {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      padding: 0.92rem 1.12rem;
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong) 62%, var(--accent-warm));
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(10, 116, 255, 0.28);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.66;
+      cursor: not-allowed;
+    }
+
+    .status {
+      min-height: 1.3rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    section {
+      margin-top: 2.2rem;
+    }
+
+    section h2 {
+      margin: 0 0 1rem;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      letter-spacing: 0.03em;
+    }
+
+    .grid-3 {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .grid-4 {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.18rem;
+      padding: 1.35rem;
+      box-shadow: 0 14px 28px rgba(14, 41, 73, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(118deg, rgba(8, 184, 199, 0.22), rgba(10, 116, 255, 0.05), rgba(255, 122, 24, 0.14));
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 0;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card h3 {
+      margin: 0 0 0.42rem;
+      font-size: 1.16rem;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .list-benefits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.82rem;
+    }
+
+    .list-benefits li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      color: #223f5d;
+    }
+
+    .list-benefits li::before {
+      content: '>>';
+      color: var(--accent);
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .urgency {
+      margin-top: 2.1rem;
+      background: linear-gradient(130deg, rgba(10, 116, 255, 0.09), rgba(255, 122, 24, 0.1));
+      border: 1px solid rgba(10, 116, 255, 0.2);
+      border-radius: 1.2rem;
+      padding: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      color: #2f4965;
+    }
+
+    .urgency p {
+      margin: 0.25rem 0 0;
+    }
+
+    .faq dt {
+      margin-top: 1rem;
+      margin-bottom: 0.28rem;
+      font-weight: 600;
+    }
+
+    .faq dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 2.6rem;
+      padding: 1.6rem 5vw 2.4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.85rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    footer a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-band {
+        grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-header {
+        padding: 0.9rem 1rem;
+      }
+
+      main {
+        padding: 0 1rem 2.8rem;
+      }
+
+      .form-card {
+        padding: 1.3rem 1.05rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Analítico Radar</h1>
-  <p>Site em construção.</p>
+  <header class="site-header">
+    <h1 class="brand">Analitico Radar</h1>
+    <button class="btn-link" onclick="document.getElementById('lead-form').scrollIntoView({ behavior: 'smooth' })">Garantir vaga</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h2 class="headline">Encontre oportunidades antes da concorrencia perceber.</h2>
+        <p class="lead">
+          O Modulo 1 do Analitico Radar transforma sinais dispersos de mercado em decisoes comerciais mais rapidas,
+          seguras e lucrativas, sem depender de achismo ou horas de pesquisa manual.
+        </p>
+
+        <div class="pill-row" aria-label="Diferenciais principais">
+          <span class="pill">Dashboard inteligente</span>
+          <span class="pill">Radar de oportunidades</span>
+          <span class="pill">Score acionavel</span>
+        </div>
+
+        <div class="cred">
+          Em um unico ambiente, sua equipe filtra oportunidades por perfil operacional, recebe alertas de janela de
+          entrada e monta shortlist comercial com prioridade real de execucao.
+        </div>
+
+        <div class="proof-band" aria-label="Provas de impacto">
+          <div class="proof-item">
+            <strong>+3.4k</strong>
+            produtos mapeados
+          </div>
+          <div class="proof-item">
+            <strong>72h</strong>
+            para reagir a mudancas
+          </div>
+          <div class="proof-item">
+            <strong>Top 200</strong>
+            vagas nesta turma
+          </div>
+        </div>
+      </div>
+
+      <aside class="form-card" id="lead-form" aria-label="Formulario de cadastro">
+        <h2>Lista de acesso antecipado</h2>
+        <p class="form-note">Preencha os dados para receber prioridade de onboarding e atualizacoes do lancamento.</p>
+
+        <form novalidate>
+          <div>
+            <label for="name">Nome</label>
+            <input type="text" name="name" id="name" placeholder="Nome completo (opcional)" />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required placeholder="email@empresa.com" />
+          </div>
+
+          <div>
+            <label for="whatsapp">WhatsApp</label>
+            <input type="text" name="whatsapp" id="whatsapp" required placeholder="(11) 91234-5678" maxlength="16" />
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="consent" required />
+            <label for="consent">Concordo em receber comunicacoes sobre o lancamento e novidades do Analitico Radar.</label>
+          </div>
+
+          <div class="lgpd">Seus dados serao usados apenas para avisos sobre o produto. Sem spam.</div>
+          <button type="submit" class="btn-primary" id="submitBtn">Quero meu acesso antecipado</button>
+          <div class="status" aria-live="polite" id="statusMessage"></div>
+        </form>
+      </aside>
+    </section>
+
+    <section aria-label="Pontos estrategicos do modulo 1">
+      <h2>Modulo 1: estrutura para decidir com velocidade e controle</h2>
+      <div class="grid-4">
+        <article class="card">
+          <h3>Dashboard inteligente</h3>
+          <p>Veja em segundos os produtos com maior score, volume de oportunidades mapeadas e saude operacional da rodada.</p>
+        </article>
+        <article class="card">
+          <h3>Radar de oportunidades</h3>
+          <p>Organiza potencial de entrada por score, hype, confianca e consenso entre fontes para indicar entrar, observar ou evitar.</p>
+        </article>
+        <article class="card">
+          <h3>Filtros avancados</h3>
+          <p>Segmente por categoria, nicho, prioridade, evidencia minima e validacao para adaptar a leitura ao perfil da sua operacao.</p>
+        </article>
+        <article class="card">
+          <h3>Score com recomendacao acionavel</h3>
+          <p>Em vez de dezenas de metricas soltas, o sistema traduz sinais de mercado em prioridade pratica para o time executar.</p>
+        </article>
+        <article class="card">
+          <h3>Central de alertas</h3>
+          <p>Receba sinais de janela de entrada, risco de entrada tardia e alertas quando a qualidade dos dados exige cautela.</p>
+        </article>
+        <article class="card">
+          <h3>Historico auditavel de execucoes</h3>
+          <p>Compare rodadas do pipeline, acompanhe evolucao e tenha rastreabilidade para padronizar a rotina comercial.</p>
+        </article>
+        <article class="card">
+          <h3>Shortlist comercial</h3>
+          <p>Converta analise em acao com uma lista priorizada de produtos para validacao, teste e escala disciplinada.</p>
+        </article>
+        <article class="card">
+          <h3>Timeline por produto</h3>
+          <p>Acompanhe score hibrido, risco de entrada tardia e pressao de preco para evitar entradas ruins e captar tracao consistente.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>O que voce recebe ao entrar agora</h2>
+      <ul class="list-benefits">
+        <li><strong>Acesso antecipado ao Modulo 1</strong> com onboarding prioritario para as primeiras vagas.</li>
+        <li><strong>Alertas operacionais exclusivos</strong> para janelas de entrada e riscos de saturacao.</li>
+        <li><strong>Roteiro pratico de execucao</strong> para transformar analise em decisao comercial em menos tempo.</li>
+      </ul>
+    </section>
+
+    <section class="urgency" aria-label="Urgencia de vagas">
+      <div>
+        <strong>Acesso antecipado limitado para esta turma.</strong>
+        <p>As primeiras vagas participam da rodada de feedback que define os proximos modulos e melhorias do produto.</p>
+      </div>
+      <div>Disponibilizamos cerca de 200 vagas nesta fase.</div>
+    </section>
+
+    <section class="faq" aria-label="Perguntas frequentes">
+      <h2>Perguntas frequentes</h2>
+      <dl>
+        <dt>Quando lança?</dt>
+        <dd>Estamos finalizando os ultimos ajustes e os inscritos serao avisados primeiro sobre a data oficial.</dd>
+
+        <dt>WhatsApp e obrigatorio?</dt>
+        <dd>Sim. Usamos o WhatsApp para avisos rapidos de liberacao, janelas de acesso e comunicacoes importantes da lista.</dd>
+
+        <dt>Vou receber spam?</dt>
+        <dd>Nao. Seus dados sao usados apenas para avisos sobre o lancamento e conteudos relacionados ao produto.</dd>
+
+        <dt>Como sair da lista?</dt>
+        <dd>Basta responder qualquer mensagem solicitando saida que removemos seu contato imediatamente.</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Analitico Radar - Inteligencia para decisoes comerciais.</div>
+    <div>
+      <a href="#">Politica de privacidade</a>
+      <span> · </span>
+      <a href="#">Termos</a>
+    </div>
+    <div>
+      <a href="mailto:contato@analiticoradar.com">contato@analiticoradar.com</a>
+    </div>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://gzgzbcdcfcsszvujcwwp.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Z3piY2RjZmNzc3p2dWpjd3dwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNjI5MDYsImV4cCI6MjA4OTkzODkwNn0.DU2vR5A2pn6kFM_iGQCMAV1Qbn8hr7e7jZB-5ruN0v4';
+    const SUPABASE_TABLE = 'leads';
+    const LOCAL_STORAGE_KEY = 'analitico-radar-leads';
+
+    const form = document.querySelector('form');
+    const emailInput = document.getElementById('email');
+    const whatsappInput = document.getElementById('whatsapp');
+    const statusMessage = document.getElementById('statusMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const consentInput = document.getElementById('consent');
+
+    const formatPhone = (value) => {
+      const digits = value.replace(/\D/g, '');
+      if (!digits) return '';
+      const part1 = digits.slice(0, 2);
+      const part2 = digits.slice(2, 7);
+      const part3 = digits.slice(7, 11);
+      if (digits.length <= 2) return `(${part1}`;
+      if (digits.length <= 7) return `(${part1}) ${part2}`;
+      return `(${part1}) ${part2}-${part3}`;
+    };
+
+    whatsappInput.addEventListener('input', (event) => {
+      event.target.value = formatPhone(event.target.value);
+    });
+
+    const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
+    const isValidWhatsapp = (value) => {
+      const digits = value.replace(/\D/g, '');
+      return digits.length === 10 || digits.length === 11;
+    };
+
+    const normalizeWhatsapp = (value) => value.replace(/\D/g, '') || null;
+
+    const saveLeadLocally = (payload) => {
+      const saved = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+      saved.push(payload);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(saved));
+    };
+
+    const setStatus = (type, message) => {
+      statusMessage.textContent = message;
+      if (type === 'error') {
+        statusMessage.style.color = '#d8374f';
+        return;
+      }
+      if (type === 'idle') {
+        statusMessage.style.color = '#4b6077';
+        return;
+      }
+      statusMessage.style.color = '#138a54';
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!isValidEmail(emailInput.value)) {
+        setStatus('error', 'Por favor, informe um email valido.');
+        emailInput.focus();
+        return;
+      }
+      if (!isValidWhatsapp(whatsappInput.value)) {
+        setStatus('error', 'Informe um WhatsApp valido com DDD.');
+        whatsappInput.focus();
+        return;
+      }
+      if (!consentInput.checked) {
+        setStatus('error', 'Voce precisa concordar com as comunicacoes para continuar.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      setStatus('idle', 'Enviando informacoes...');
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: emailInput.value.trim(),
+        whatsapp: whatsappInput.value.trim(),
+        consent: true,
+        submittedAt: new Date().toISOString(),
+      };
+
+      try {
+        const result = await submitLead(payload);
+        if (result.mode === 'fallback') {
+          setStatus('success', 'Cadastro confirmado! Recebemos seus dados e vamos sincronizar seu acesso antecipado.');
+        } else {
+          setStatus('success', 'Cadastro confirmado! Voce esta na lista de acesso antecipado.');
+        }
+        form.reset();
+      } catch (error) {
+        console.error(error);
+        setStatus('error', 'Nao foi possivel salvar agora. Tente novamente em instantes.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Quero meu acesso antecipado';
+      }
+    });
+
+    async function submitLead(payload) {
+      const requestBody = {
+        name: payload.name || null,
+        email: payload.email,
+        whatsapp: normalizeWhatsapp(payload.whatsapp),
+        consent: payload.consent,
+        submitted_at: payload.submittedAt,
+      };
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Supabase request failed with status ${response.status}`);
+        }
+
+        return { mode: 'remote' };
+      } catch (error) {
+        saveLeadLocally(payload);
+        return { mode: 'fallback', error };
+      }
+    }
+  </script>
 </body>
 </html>
